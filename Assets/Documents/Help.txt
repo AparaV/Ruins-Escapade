@@ -1,0 +1,22 @@
+
+====================
+HELP
+====================
+
+Your Goal:
+	Find all keys, locate door and exit to next level
+
+Controls:
+	  Arrow Keys - Movement
+	  SPACEBAR   - Pick up key
+	ENTER/RETURN - Exit Door
+	ENTER/RETURN - Show number of keys you have
+	    ESCAPE/Q - Exit Game
+	        F1/H - Launch Help Document
+
+Did you find a bug?
+	Report the bug to an admin or the creator
+
+====================
+END OF HELP
+====================
