@@ -34,4 +34,4 @@ Door Sprite Sheet:
 
 ##Final Credits:
 
-Shout Out to [Lazy Foo' Productions](www.lazyfoo.net) for some amazing tutorials.
+Shout Out to [Lazy Foo' Productions](http://www.lazyfoo.net) for some amazing tutorials.
