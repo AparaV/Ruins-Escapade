@@ -17,11 +17,11 @@ All images and sprites used belong to their rightful owners.
 ##Credits to the sprites used:
 
 Link (Beowulf) Sprite Sheet:
-	Obtained from: [NickBriz](https://www.nickbriz.com/gameon/2b.html) (Date: 10-20-2016)
+	Obtained from: [NickBriz](http://www.nickbriz.com/gameon/2b.html) (Date: 10-20-2016)
 	The image belongs to the rightful owners
 
 Tiles Sprite Sheet:
-	Obtained from: [MODDB](https://www.moddb.com/games/chesslike-adventures-in-chess/images/tile-themes-sprite-sheet) (Date: 10-20-2016)
+	Obtained from: [MODDB](http://www.moddb.com/games/chesslike-adventures-in-chess/images/tile-themes-sprite-sheet) (Date: 10-20-2016)
 	The image belongs to the rightful owners
 
 Key Sprite Sheet:
@@ -29,7 +29,7 @@ Key Sprite Sheet:
 	The image belongs to the rightful owners
 
 Door Sprite Sheet:
-	Obtained from: [Unity3D Community](https://forum.unity3d.com/threads/wip-2d-modular-medieval-asset-package.257397/) (Date: 10-22-2016)
+	Obtained from: [Unity3D Community](http://forum.unity3d.com/threads/wip-2d-modular-medieval-asset-package.257397/) (Date: 10-22-2016)
 	The image belongs to the rightful owners
 
 ##Final Credits:
