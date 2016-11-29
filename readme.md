@@ -1,14 +1,21 @@
-#RUINS ESCAPADE
+#Ruins Escapade
+
+This is a very basic dungeon crawler game I made for my Intro to Computing project.
+This game is inspired by [Legend of Zelda](http://www.zelda.com).
+
+This game is written in C++ and uses [SDL 2](http://www.libsdl.org).
 
 ####[Working Demo](https://youtu.be/56loejYyuwU)
 
 ##Dependencies:
 
-1. To get started, follow 'Getting the Game to Work.pdf'
+1. `sudo apt-get install libsdl2-dev`
 
-2. Then, read the manual 'Ruins Escapade.pdf'
+2. `sudo apt-get install libsdl2-image-dev`
 
-3. If you are using a different OS or environment, visit [Lazy Foo' Productions - Hello SDL](http://lazyfoo.net/tutorials/SDL/01_hello_SDL/index.php).
+3. `sudo apt-get install libsdl2-ttf-dev`
+
+For other OS and environments, visit [Lazy Foo' Productions - Hello SDL](http://lazyfoo.net/tutorials/SDL/01_hello_SDL/index.php)
 
 ##Disclaimer:
 
