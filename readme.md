@@ -1,13 +1,13 @@
-#Ruins Escapade
+# Ruins Escapade
 
 This is a very basic dungeon crawler game I made for my Intro to Computing project.
 This game is inspired by [Legend of Zelda](http://www.zelda.com).
 
 This game is written in C++ and uses [SDL 2](http://www.libsdl.org).
 
-####[Working Demo](https://youtu.be/56loejYyuwU)
+#### [Working Demo](https://youtu.be/56loejYyuwU)
 
-##Dependencies:
+## Dependencies:
 
 1. `sudo apt-get install libsdl2-dev`
 
@@ -17,13 +17,13 @@ This game is written in C++ and uses [SDL 2](http://www.libsdl.org).
 
 For other OS and environments, visit [Lazy Foo' Productions - Hello SDL](http://lazyfoo.net/tutorials/SDL/01_hello_SDL/index.php)
 
-##Disclaimer:
+## Disclaimer:
 
 I can rightfully claim all of the code written in the project as my own.
 However, the images I have used for incorporating graphics do not belong to me.
 All images and sprites used belong to their rightful owners.
 
-##Credits to the sprites used:
+## Credits to the sprites used:
 
 Link (Beowulf) Sprite Sheet:
 	Obtained from: [NickBriz](http://www.nickbriz.com/gameon/2b.html) (Date: 10-20-2016)
