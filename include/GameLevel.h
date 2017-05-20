@@ -9,11 +9,11 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <Texture.h>
-#include <GameObject.h>
-#include <Hero.h>
-#include <Key.h>
-#include <GameMap.h>
+#include "Texture.h"
+#include "GameObject.h"
+#include "Hero.h"
+#include "Key.h"
+#include "GameMap.h"
 #include <iostream>
 
 using std::string;

@@ -4,7 +4,7 @@
  **Contains Tile Class Implementation
  */
 
-#include "Tile.h"
+#include "../include/Tile.h"
 
 //Constructor
 Tile::Tile(int x, int y, int type){

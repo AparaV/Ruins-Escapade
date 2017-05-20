@@ -9,8 +9,8 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <Texture.h>
-#include <Tile.h>
+#include "Texture.h"
+#include "Tile.h"
 #include <fstream>
 
 using std::string;

@@ -8,8 +8,8 @@
 #ifndef KEY_H
 #define KEY_H
 
-#include <GameObject.h>
-#include <Hero.h>
+#include "GameObject.h"
+#include "Hero.h"
 #include <iostream>
 
 using std::string;

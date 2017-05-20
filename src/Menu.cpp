@@ -4,7 +4,7 @@
  **Contains Menu Class Implementation
  */
 
-#include "Menu.h"
+#include "../include/Menu.h"
 
 //Constructor
 Menu::Menu(int w, int h, SDL_Window* gWindow, SDL_Renderer* gRenderer, TTF_Font* font){

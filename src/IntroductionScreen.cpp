@@ -4,7 +4,7 @@
  **Contains IntroductionScreen Class Implementation
  */
 
-#include "IntroductionScreen.h"
+#include "../include/IntroductionScreen.h"
 
 //Constructor
 IntroductionScreen::IntroductionScreen(int w, int h, SDL_Window* gWindow, SDL_Renderer* gRenderer, TTF_Font* gFont){

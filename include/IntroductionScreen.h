@@ -9,9 +9,9 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-#include <Texture.h>
-#include <fstream>
-#include <sstream>
+#include "Texture.h"
+#include "fstream"
+#include "sstream"
 
 using std::ifstream;
 using std::stringstream;

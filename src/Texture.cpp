@@ -4,7 +4,7 @@
  **Contains Texture Implementation
  */
 
-#include "Texture.h"
+#include "../include/Texture.h"
 
 //Constructor
 Texture::Texture(){

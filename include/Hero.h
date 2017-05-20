@@ -8,9 +8,9 @@
 #ifndef HERO_H
 #define HERO_H
 
-#include <GameObject.h>
-#include <GameMap.h>
-#include <Key.h>
+#include "GameObject.h"
+#include "GameMap.h"
+#include "Key.h"
 
 using std::string;
 
