@@ -4,7 +4,7 @@
  **Contains Key Implementation
  */
 
-#include "../include/Key.h"
+#include "Key.h"
 
 //Constructor
 Key::Key(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer):

@@ -4,7 +4,7 @@
  **Contains GameObject implementation
  */
 
-#include "../include/GameObject.h"
+#include "GameObject.h"
 
 //Constructor
 GameObject::GameObject(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer){

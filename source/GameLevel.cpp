@@ -4,7 +4,7 @@
  **Contains GameLevel Class Implementation
  */
 
-#include "../include/GameLevel.h"
+#include "GameLevel.h"
 
 //Constructor
 GameLevel::GameLevel(int width, int height, SDL_Window* gWindow, SDL_Renderer* gRenderer, Hero* player){

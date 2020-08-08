@@ -1,9 +1,9 @@
-IDIR = ./include
+IDIR = ./source
 CC = g++
 CFLAGS = -std=c++11 -I$(IDIR)
 
 ODIR = obj
-SDIR = ./src
+SDIR = ./source
 
 LIBS = -lSDL2 -lSDL2_image -lSDL2_ttf
 

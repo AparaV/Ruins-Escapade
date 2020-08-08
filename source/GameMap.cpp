@@ -4,7 +4,7 @@
  **Contains GameMap Implementation
  */
 
-#include "../include/GameMap.h"
+#include "GameMap.h"
 
 //Constructor
 GameMap::GameMap(int numberTiles, string srcPath, string imagePath, SDL_Renderer* renderer){

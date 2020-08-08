@@ -4,7 +4,7 @@
  **Contains Hero Class Implementation
  */
 
-#include "../include/Hero.h"
+#include "Hero.h"
 
 //Constructor
 Hero::Hero(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer, GameMap* mapped):

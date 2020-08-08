@@ -6,9 +6,9 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "include/Menu.h"
-#include "include/IntroductionScreen.h"
-#include "include/GameLevel.h"
+#include "source/Menu.h"
+#include "source/IntroductionScreen.h"
+#include "source/GameLevel.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
