@@ -85,25 +85,25 @@ void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
             //Move Up
             case SDLK_UP:
                 velY -= constVelY;
-                currentClip = spriteClipUp[0];
+                movingUp = true;
                 break;
 
             //Move Down
             case SDLK_DOWN:
                 velY += constVelY;
-                currentClip = spriteClipDown[0];
+                movingDown = true;
                 break;
 
             //Move Right
             case SDLK_RIGHT:
                 velX += constVelX;
-                currentClip = spriteClipRight[0];
+                movingRight = true;
                 break;
 
             //Move Left
             case SDLK_LEFT:
                 velX -= constVelX;
-                currentClip = spriteClipLeft[0];
+                movingLeft = true;
                 break;
 
             //Pick Up Key
@@ -126,26 +126,30 @@ void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
 
             //Stop Moving Up
             case SDLK_UP:
-                velY += constVelY;
+                movingUp = false;
                 currentClip = spriteClipUp[0];
+                FRAME = 0;
                 break;
 
             //Stop Moving Down
             case SDLK_DOWN:
-                velY -= constVelY;
+                movingDown = false;
                 currentClip = spriteClipDown[0];
+                FRAME = 0;
                 break;
 
             //Stop Moving Right
             case SDLK_RIGHT:
-                velX -= constVelX;
+                movingRight = false;
                 currentClip = spriteClipRight[0];
+                FRAME = 0;
                 break;
 
             //Stop Moving Left
             case SDLK_LEFT:
-                velX += constVelX;
+                movingLeft = false;
                 currentClip = spriteClipLeft[0];
+                FRAME = 0;
                 break;
 
             //Pick Up Key
@@ -237,15 +241,12 @@ int Hero::touchesWall(Tile* tiles[], int totalTiles, int TILE_FLOOR, int TILE_HO
 
 //Move our Hero
 int Hero::moveObject(){
-
-    int pixelsPerFrameChange = 1;//Rate of Changing Frames
-    int frameCount = 0;
     int initX = spritePos.x;
     int initY = spritePos.y;
     int positionOnTile;//Is it possible to walk on Tile
 
     //Moving Right
-    if(velX > 0){
+    if (movingRight) {
 
         while(spritePos.x <= initX + velX){
 
@@ -264,16 +265,13 @@ int Hero::moveObject(){
             }
 
             //Animate
-            frameCount++;
-            if(frameCount >= 8){
-                frameCount = 0;
-            }
-            currentClip = spriteClipRight[frameCount];
+            FRAME = (FRAME + 1) % 8;
+            currentClip = spriteClipRight[FRAME];
         }
     }
 
     //Moving Left
-    if(velX < 0){
+    if (movingLeft) {
 
         while(spritePos.x >= initX + velX){
 
@@ -292,16 +290,13 @@ int Hero::moveObject(){
             }
 
             //Animate
-            frameCount++;
-            if(frameCount >= 8){
-                frameCount = 0;
-            }
-            currentClip = spriteClipLeft[frameCount];
+            FRAME = (FRAME + 1) % 8;
+            currentClip = spriteClipLeft[FRAME];
         }
     }
 
     //Moving Down
-    if(velY > 0){
+    if (movingDown) {
 
         while(spritePos.y <= initY + velY){
 
@@ -320,16 +315,13 @@ int Hero::moveObject(){
             }
 
             //Animate
-            frameCount++;
-            if(frameCount >= 8){
-                frameCount = 0;
-            }
-            currentClip = spriteClipDown[frameCount];
+            FRAME = (FRAME + 1) % 8;
+            currentClip = spriteClipDown[FRAME];
         }
     }
 
     //Moving Up
-    if(velY < 0){
+    if (movingUp) {
 
         while(spritePos.y >= initY + velY){
 
@@ -348,11 +340,8 @@ int Hero::moveObject(){
             }
 
             //Animate
-            frameCount++;
-            if(frameCount >= 8){
-                frameCount = 0;
-            }
-            currentClip = spriteClipUp[frameCount];
+            FRAME = (FRAME + 1) % 8;
+            currentClip = spriteClipUp[FRAME];
         }
     }
 

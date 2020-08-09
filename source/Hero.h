@@ -48,6 +48,12 @@ private:
     SDL_Rect spriteClipUp[8];
     SDL_Rect spriteClipDown[8];
     int FRAME;//Current Animation Frame
+    float pixelsPerFrameChange = 7;//Rate of Changing Frames
+
+    bool movingUp = false;
+    bool movingDown = false;
+    bool movingRight = false;
+    bool movingLeft = false;
 
     SDL_Rect currentClip;//Current Position
     int startPosX, startPosY;//Starting Position
