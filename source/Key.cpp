@@ -7,8 +7,8 @@
 #include "Key.h"
 
 //Constructor
-Key::Key(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer):
-    GameObject(path, x, y, constVelX, constVelY, renderer){
+Key::Key(string path, int x, int y, SDL_Renderer* renderer):
+    Object(path, x, y, renderer){
     isTaken = false;
     setClipSize(0, 0, KEY_WIDTH, KEY_HEIGHT);
 }

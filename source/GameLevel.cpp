@@ -7,7 +7,7 @@
 #include "GameLevel.h"
 
 //Constructor
-GameLevel::GameLevel(int width, int height, SDL_Window* gWindow, SDL_Renderer* gRenderer, Hero* player){
+GameLevel::GameLevel(int width, int height, SDL_Window* gWindow, SDL_Renderer* gRenderer, Player* player){
     SCREEN_HEIGHT = height;
     SCREEN_WIDTH = width;
     camera.x = 0;
@@ -78,9 +78,9 @@ int GameLevel::playLevel(){
     hero->setLevelDimensions(LEVEL_WIDTH, LEVEL_HEIGHT);
 
     //Setup Keys
-    Key key1("Assets/Sprites/Key.png", 192, 768, 0, 0, globalRenderer);
-    Key key2("Assets/Sprites/Key.png", 576, 768, 0, 0, globalRenderer);
-    Key key3("Assets/Sprites/Key.png", 1152, 768, 0, 0, globalRenderer);
+    Key key1("Assets/Sprites/Key.png", 192, 768, globalRenderer);
+    Key key2("Assets/Sprites/Key.png", 576, 768, globalRenderer);
+    Key key3("Assets/Sprites/Key.png", 1152, 768, globalRenderer);
 
     //Event Handling
     SDL_Event e;
@@ -124,7 +124,7 @@ int GameLevel::playLevel(){
         SDL_RenderClear(globalRenderer);
 
         //Move Object and Camera
-        if(hero->moveObject() == 99){
+        if(hero->move() == 99){
             return 99;//If hero falls in Hole
         }
         hero->setCamera(camera, LEVEL_WIDTH, LEVEL_HEIGHT);

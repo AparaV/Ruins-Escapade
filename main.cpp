@@ -59,8 +59,8 @@ int main(int argc, char* argv[]){
     screen.setTextPath(introDocSrc);//load the introduction text
 
     //Setup Hero
-    Hero hero(heroSpriteSrc, 0, 0, 1, 1, gRenderer);
-    hero.objectTexture.setRenderer(gRenderer);
+    Player hero(heroSpriteSrc, 0, 0, 1, 1, gRenderer);
+    hero.setRenderer(gRenderer);
     hero.setClipSize(0, 96, 64, 96);
 
     //Setup Level 1 Map

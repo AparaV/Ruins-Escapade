@@ -4,11 +4,11 @@
  **Contains Hero Class Implementation
  */
 
-#include "Hero.h"
+#include "Player.h"
 
 //Constructor
-Hero::Hero(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer, GameMap* mapped):
-    GameObject(path, x, y, constVelX, constVelY, renderer){
+Player::Player(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer, GameMap* mapped):
+    DynamicObject(path, x, y, constVelX, constVelY, renderer){
     initiateSpriteClips();//Initiate Sprite Clips
     currentFrame = 0;
     currentClip = spriteClipRight[0];//Initiate Current Clip
@@ -19,13 +19,13 @@ Hero::Hero(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer
 }
 
 //Destructor
-Hero::~Hero(){
+Player::~Player(){
     objectTexture.free();
     level = NULL;
 }
 
 //Initiate Sprite Clips
-void Hero::initiateSpriteClips(){
+void Player::initiateSpriteClips(){
 
     //Left Sprites
     for(int i = 0; i < 8; ++i){
@@ -61,12 +61,12 @@ void Hero::initiateSpriteClips(){
 }
 
 //Set the Game Map
-void Hero::setLevel(GameMap* lvl){
+void Player::setLevel(GameMap* lvl){
     level = lvl;
 }
 
 //Set Initial Sprite Position
-void Hero::setSpritePos(int x, int y){
+void Player::setSpritePos(int x, int y){
     spritePos.x = x;
     spritePos.y = y;
     startPosX = x;
@@ -74,7 +74,7 @@ void Hero::setSpritePos(int x, int y){
 }
 
 //Main Event Handler
-void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
+void Player::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
 
     //If Key is Pressed
     if(e.type == SDL_KEYDOWN && e.key.repeat == 0){
@@ -84,22 +84,22 @@ void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
 
             //Move Up
             case SDLK_UP:
-                velY -= constVelY;
+                velY -= unitVelocityY;
                 break;
 
             //Move Down
             case SDLK_DOWN:
-                velY += constVelY;
+                velY += unitVelocityY;
                 break;
 
             //Move Right
             case SDLK_RIGHT:
-                velX += constVelX;
+                velX += unitVelocityX;
                 break;
 
             //Move Left
             case SDLK_LEFT:
-                velX -= constVelX;
+                velX -= unitVelocityX;
                 break;
 
             //Pick Up Key
@@ -122,28 +122,28 @@ void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
 
             //Stop Moving Up
             case SDLK_UP:
-                velY += constVelY;
+                velY += unitVelocityY;
                 currentClip = spriteClipUp[0];
                 currentFrame = 0;
                 break;
 
             //Stop Moving Down
             case SDLK_DOWN:
-                velY -= constVelY;
+                velY -= unitVelocityY;
                 currentClip = spriteClipDown[0];
                 currentFrame = 0;
                 break;
 
             //Stop Moving Right
             case SDLK_RIGHT:
-                velX -= constVelX;
+                velX -= unitVelocityX;
                 currentClip = spriteClipRight[0];
                 currentFrame = 0;
                 break;
 
             //Stop Moving Left
             case SDLK_LEFT:
-                velX += constVelX;
+                velX += unitVelocityX;
                 currentClip = spriteClipLeft[0];
                 currentFrame = 0;
                 break;
@@ -162,7 +162,7 @@ void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
 }
 
 //Check Collision
-bool Hero::checkCollision(SDL_Rect a, SDL_Rect b) {
+bool Player::checkCollision(SDL_Rect a, SDL_Rect b) {
 
     // If the two rectangles do not intersect, we do not have a collision
     if (SDL_HasIntersection(&a, &b) == SDL_FALSE) {
@@ -200,7 +200,7 @@ bool Hero::checkCollision(SDL_Rect a, SDL_Rect b) {
 }
 
 //Check Whether Hero Touches Walls or Holes
-int Hero::touchesWall(Tile* tiles[], int totalTiles, int TILE_FLOOR, int TILE_HOLE){
+int Player::touchesWall(Tile* tiles[], int totalTiles, int TILE_FLOOR, int TILE_HOLE){
 
     //Check For All Tiles
     for(int i = 0; i < totalTiles; ++i){
@@ -233,7 +233,7 @@ int Hero::touchesWall(Tile* tiles[], int totalTiles, int TILE_FLOOR, int TILE_HO
 }
 
 //Move our Hero
-int Hero::moveObject(){
+int Player::move(){
     int initX = spritePos.x;
     int initY = spritePos.y;
     int positionOnTile;//Is it possible to walk on Tile
@@ -338,7 +338,7 @@ int Hero::moveObject(){
 }
 
 //Reposition Camera
-void Hero::setCamera(SDL_Rect &camera, int w, int h){
+void Player::setCamera(SDL_Rect &camera, int w, int h){
 
     //Center Camera on Hero
     camera.x = (spritePos.x + spriteWidth / 2) - SCREEN_WIDTH / 2;
@@ -361,13 +361,13 @@ void Hero::setCamera(SDL_Rect &camera, int w, int h){
 }
 
 //Pick Up Key
-void Hero::pickUpKey(Key &key){
+void Player::pickUpKey(Key &key){
 
     //If Key Is Not Already Taken
     if(key.getIsTaken() == false){
 
         //If Hero and Key Intersect
-        if(checkCollision(Hero::spritePos, key.getPos())){
+        if(checkCollision(Player::spritePos, key.getPos())){
             key.keyPicked();
             keysPicked++;
         }
@@ -375,7 +375,7 @@ void Hero::pickUpKey(Key &key){
 }
 
 //Open Door
-bool Hero::openDoor(SDL_Event &e){
+bool Player::openDoor(SDL_Event &e){
 
     //If ENTER is Pressed
     if(e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN){
@@ -398,7 +398,7 @@ bool Hero::openDoor(SDL_Event &e){
 }
 
 //Render Sprite - Relative to Camera
-void Hero::render(int camX, int camY){
+void Player::render(int camX, int camY){
     objectTexture.render(spritePos.x - camX, spritePos.y - camY, &currentClip);
 }
 

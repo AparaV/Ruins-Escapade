@@ -15,34 +15,33 @@
 using std::string;
 
 //GameObject Definition
-class GameObject{
+class Object{
 
 public:
-    Texture objectTexture;//Texture Containing Object
 
-    GameObject(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer);//Constructor
-    ~GameObject();//Destructor
+    Object() {};
+    Object(string path, int x, int y, SDL_Renderer* renderer);//Constructor
+    virtual ~Object();//Destructor
 
-    int getPosX();//Position Getters
-    int getPosY();
-    void setLevelDimensions(int x, int y);//Level Dimensions Setter
-    void setClipSize(int x, int y, int w, int h);//Sprite Size Setter
+    virtual int getPosX();//Position Getters
+    virtual int getPosY();
+    virtual void setLevelDimensions(int x, int y);//Level Dimensions Setter
+    virtual void setClipSize(int x, int y, int w, int h);//Sprite Size Setter
 
-    void handleEvent(SDL_Event &e);//Object Event Handler
-    void moveObject();//Move Object
-    void render(int camX, int camY);//Render Object onto Window
+    virtual void setRenderer(SDL_Renderer* renderer);
+    virtual void render(int camX, int camY);//Render Object onto Window
 
 protected:
     string spriteSourcePath;//Sprite Path
     SDL_Rect spritePos;//Sprite Offset
-    int velX, velY;//Object Velocity
-    int constVelX, constVelY;//Maximum Velocity
     SDL_Rect spriteClip;//Information to Clip Image from Source
 
     int LEVEL_WIDTH;//Level Dimensions
     int LEVEL_HEIGHT;
     const int SCREEN_WIDTH = 640;//Screen Dimensions
     const int SCREEN_HEIGHT = 320;
+
+    Texture objectTexture;//Texture Containing Object
 
 private:
 

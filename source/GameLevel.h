@@ -10,8 +10,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "Texture.h"
-#include "GameObject.h"
-#include "Hero.h"
+#include "Object.h"
+#include "Player.h"
 #include "Key.h"
 #include "GameMap.h"
 #include <iostream>
@@ -28,7 +28,7 @@ class GameLevel{
 
 public:
 
-    GameLevel(int, int, SDL_Window* gWin, SDL_Renderer* gRenderer, Hero* player);//constructor
+    GameLevel(int, int, SDL_Window* gWin, SDL_Renderer* gRenderer, Player* player);//constructor
     ~GameLevel();//Destructor
 
     void setLevelDimensions(int x, int w);//Set Level Dimensions
@@ -50,7 +50,7 @@ private:
     SDL_Window* window = NULL;//Window that we will render to
     SDL_Renderer* globalRenderer = NULL;//Renderer
     GameMap* level = NULL;//Map of Level
-    Hero* hero = NULL;//Hero
+    Player* hero = NULL;//Hero
     SDL_Rect camera;//Camera to focus on Hero
     int imgFlags;//Enable Loading .png Files
 

@@ -8,17 +8,17 @@
 #ifndef KEY_H
 #define KEY_H
 
-#include "GameObject.h"
-#include "Hero.h"
+#include "Object.h"
+#include "Player.h"
 #include <iostream>
 
 using std::string;
 
 //Key:GameObject Definition
-class Key : public GameObject{
+class Key : protected Object{
 
 public:
-    Key(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer);//Constructor
+    Key(string path, int x, int y, SDL_Renderer* renderer);//Constructor
     ~Key();//Destructor
 
     SDL_Rect getPos();//Get Key Position
