@@ -43,17 +43,17 @@ protected:
 
 private:
 
-    SDL_Rect spriteClipLeft[8];//Frames to Cut for Animation
+    // Animation
+    SDL_Rect spriteClipLeft[8]; // Frames to Cut for Animation
     SDL_Rect spriteClipRight[8];
     SDL_Rect spriteClipUp[8];
     SDL_Rect spriteClipDown[8];
-    int FRAME;//Current Animation Frame
-    float pixelsPerFrameChange = 7;//Rate of Changing Frames
+    int currentFrame; // Current Animation Frame
+    float pixelsPerFrameChange = 7; // Rate of Changing Frames
 
-    bool movingUp = false;
-    bool movingDown = false;
-    bool movingRight = false;
-    bool movingLeft = false;
+    // Clearance for head and sides of the body in pixels
+    int HEAD_CLEARANCE = 50;
+    int BODY_CLEARANCE = 10;
 
     SDL_Rect currentClip;//Current Position
     int startPosX, startPosY;//Starting Position

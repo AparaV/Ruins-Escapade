@@ -10,7 +10,7 @@
 Hero::Hero(string path, int x, int y, int constVelX, int constVelY, SDL_Renderer* renderer, GameMap* mapped):
     GameObject(path, x, y, constVelX, constVelY, renderer){
     initiateSpriteClips();//Initiate Sprite Clips
-    FRAME = 0;
+    currentFrame = 0;
     currentClip = spriteClipRight[0];//Initiate Current Clip
     level = mapped;
     keysPicked = 0;
@@ -85,25 +85,21 @@ void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
             //Move Up
             case SDLK_UP:
                 velY -= constVelY;
-                movingUp = true;
                 break;
 
             //Move Down
             case SDLK_DOWN:
                 velY += constVelY;
-                movingDown = true;
                 break;
 
             //Move Right
             case SDLK_RIGHT:
                 velX += constVelX;
-                movingRight = true;
                 break;
 
             //Move Left
             case SDLK_LEFT:
                 velX -= constVelX;
-                movingLeft = true;
                 break;
 
             //Pick Up Key
@@ -126,30 +122,30 @@ void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
 
             //Stop Moving Up
             case SDLK_UP:
-                movingUp = false;
+                velY += constVelY;
                 currentClip = spriteClipUp[0];
-                FRAME = 0;
+                currentFrame = 0;
                 break;
 
             //Stop Moving Down
             case SDLK_DOWN:
-                movingDown = false;
+                velY -= constVelY;
                 currentClip = spriteClipDown[0];
-                FRAME = 0;
+                currentFrame = 0;
                 break;
 
             //Stop Moving Right
             case SDLK_RIGHT:
-                movingRight = false;
+                velX -= constVelX;
                 currentClip = spriteClipRight[0];
-                FRAME = 0;
+                currentFrame = 0;
                 break;
 
             //Stop Moving Left
             case SDLK_LEFT:
-                movingLeft = false;
+                velX += constVelX;
                 currentClip = spriteClipLeft[0];
-                FRAME = 0;
+                currentFrame = 0;
                 break;
 
             //Pick Up Key
@@ -166,41 +162,38 @@ void Hero::handleEvent(SDL_Event &e, Key &key1, Key &key2, Key &key3){
 }
 
 //Check Collision
-bool Hero::checkCollision(SDL_Rect a, SDL_Rect b){
+bool Hero::checkCollision(SDL_Rect a, SDL_Rect b) {
 
-    //Sides of Rectangles A and B
-    int leftA, leftB;
-    int rightA, rightB;
-    int topA, topB;
-    int bottomA, bottomB;
-
-    //Calculate Sides of Rectangle A
-    leftA = a.x;
-    rightA = a.x + a.w;
-    topA = a.y;
-    bottomA = a.y + a.h;
-
-    //Calculate Sides of Rectangle B
-    leftB = b.x;
-    rightB = b.x + b.w;
-    topB = b.y;
-    bottomB = b.y + b.h;
-
-    //If A and B don't intersect
-    if( bottomA <= topB ){
+    // If the two rectangles do not intersect, we do not have a collision
+    if (SDL_HasIntersection(&a, &b) == SDL_FALSE) {
         return false;
     }
 
-    if( topA >= bottomB ){
-        return false;
-    }
+    // Otherwise, check if the top, sides of body touches the walls
+    else {
+        // Compute the sides of the two rectanges
+        int leftA, rightA, topA, bottomA;
+        int leftB, rightB, topB, bottomB;
+        leftA = a.x;
+        rightA = a.x + a.w;
+        topA = a.y;
+        bottomA = a.y + a.h;
+        leftB = b.x;
+        rightB = b.x + b.w;
+        topB = b.y;
+        bottomB = b.y + b.h;
 
-    if( rightA <= leftB ){
-        return false;
-    }
-
-    if( leftA >= rightB ){
-        return false;
+        // Allow the head to collide with the walls
+        if (topA >= bottomB - HEAD_CLEARANCE) {
+            return false;
+        }
+        // Allow the sides of the body to collide with the walls
+        if (rightA <= leftB + BODY_CLEARANCE) {
+            return false;
+        }
+        if (leftA >= rightB - BODY_CLEARANCE) {
+            return false;
+        }
     }
 
     return true;
@@ -246,8 +239,7 @@ int Hero::moveObject(){
     int positionOnTile;//Is it possible to walk on Tile
 
     //Moving Right
-    if (movingRight) {
-
+    if (velX > 0) {
         while(spritePos.x <= initX + velX){
 
             spritePos.x += pixelsPerFrameChange;
@@ -265,14 +257,13 @@ int Hero::moveObject(){
             }
 
             //Animate
-            FRAME = (FRAME + 1) % 8;
-            currentClip = spriteClipRight[FRAME];
+            currentFrame = (currentFrame + 1) % 8;
+            currentClip = spriteClipRight[currentFrame];
         }
     }
 
     //Moving Left
-    if (movingLeft) {
-
+    if (velX < 0) {
         while(spritePos.x >= initX + velX){
 
             spritePos.x -= pixelsPerFrameChange;
@@ -290,14 +281,13 @@ int Hero::moveObject(){
             }
 
             //Animate
-            FRAME = (FRAME + 1) % 8;
-            currentClip = spriteClipLeft[FRAME];
+            currentFrame = (currentFrame + 1) % 8;
+            currentClip = spriteClipLeft[currentFrame];
         }
     }
 
     //Moving Down
-    if (movingDown) {
-
+    if (velY > 0) {
         while(spritePos.y <= initY + velY){
 
             spritePos.y += pixelsPerFrameChange;
@@ -315,14 +305,13 @@ int Hero::moveObject(){
             }
 
             //Animate
-            FRAME = (FRAME + 1) % 8;
-            currentClip = spriteClipDown[FRAME];
+            currentFrame = (currentFrame + 1) % 8;
+            currentClip = spriteClipDown[currentFrame];
         }
     }
 
     //Moving Up
-    if (movingUp) {
-
+    if (velY < 0) {
         while(spritePos.y >= initY + velY){
 
             spritePos.y -= pixelsPerFrameChange;
@@ -340,8 +329,8 @@ int Hero::moveObject(){
             }
 
             //Animate
-            FRAME = (FRAME + 1) % 8;
-            currentClip = spriteClipUp[FRAME];
+            currentFrame = (currentFrame + 1) % 8;
+            currentClip = spriteClipUp[currentFrame];
         }
     }
 
